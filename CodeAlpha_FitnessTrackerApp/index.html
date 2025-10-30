@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fitness Tracker App</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>🏃‍♂️ Fitness Tracker</h1>
+      <div class="header-actions">
+        <label for="datePicker">Date:</label>
+        <input type="date" id="datePicker">
+        <button id="addEntryBtn">Add Entry</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="entry-form" id="entryForm" aria-hidden="true">
+        <h2 id="formTitle">Add Activity</h2>
+        <div class="form-row">
+          <label>Activity Type</label>
+          <select id="activityType">
+            <option value="Walking">Walking</option>
+            <option value="Running">Running</option>
+            <option value="Workout">Workout</option>
+            <option value="Cycling">Cycling</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label>Steps</label>
+          <input type="number" id="inputSteps" min="0" placeholder="e.g., 1200">
+        </div>
+
+        <div class="form-row">
+          <label>Workout minutes</label>
+          <input type="number" id="inputWorkout" min="0" placeholder="minutes">
+        </div>
+
+        <div class="form-row">
+          <label>Calories burned</label>
+          <input type="number" id="inputCalories" min="0" placeholder="kcal">
+        </div>
+
+        <div class="form-actions">
+          <button id="saveEntryBtn">Save</button>
+          <button id="cancelEntryBtn">Cancel</button>
+        </div>
+      </section>
+
+      <section class="summary">
+        <h2>Today's Summary</h2>
+        <div class="summary-cards">
+          <div class="card">
+            <h3 id="sumSteps">0</h3>
+            <p>Steps</p>
+          </div>
+          <div class="card">
+            <h3 id="sumWorkout">0</h3>
+            <p>Workout (min)</p>
+          </div>
+          <div class="card">
+            <h3 id="sumCalories">0</h3>
+            <p>Calories</p>
+          </div>
+        </div>
+
+        <div class="goals">
+          <label>Daily Steps Goal: <span id="goalStepsValue">10000</span></label>
+          <input type="range" id="goalSteps" min="1000" max="30000" step="500" value="10000">
+          <div class="progress">
+            <div id="stepsProgress" class="progress-bar" style="width:0%"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="entries">
+        <h2>Entries for <span id="entriesDateLabel"></span></h2>
+        <ul id="entriesList"></ul>
+      </section>
+
+      <section class="charts">
+        <h2>Weekly Progress (Last 7 days)</h2>
+        <canvas id="weeklyChart" height="140"></canvas>
+      </section>
+    </main>
+
+    <footer>
+      <small>Data stored locally in your browser (LocalStorage)</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Service worker registration (PWA) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(console.error);
+    }
+  </script>
+</body>
+</html>
