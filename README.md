@@ -54,9 +54,9 @@ Use VS Code + Live Server
 
 ##  Live Demo
 
+https://github.com/vivek-231/CodeAlpha_FitnessTrackerApp
 
 
----
 
 ##  Internship Info
 
